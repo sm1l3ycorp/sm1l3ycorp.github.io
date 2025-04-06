@@ -292,6 +292,7 @@
                 statusDiv.textContent = `Map generated! ${result.width}x${result.height} tiles`;
 
                 downloadBtn.disabled = false;
+                console.log(result.width, result.height)
                 renderPreview(result.sequence, result.width, result.height);
             } catch (error) {
                 statusDiv.textContent = `Error: ${error.message}`;
@@ -360,9 +361,10 @@
                     generated.push(next_index);
                 }
 
-                const result = generated.map(i => {
+                let result = generated.map(i => {
                     return index_to_value[i] !== undefined ? index_to_value[i] : valid_values[0];
                 });
+                result.splice(0, 32)
 
                 return {
                     sequence: result,
@@ -395,7 +397,7 @@
 
             // Set canvas size to match map dimensions
             canvas.width = width * tileSize;
-            canvas.height = height * tileSize;
+            canvas.height = (height * tileSize) - 32;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
