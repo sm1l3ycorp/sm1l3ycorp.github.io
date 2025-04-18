@@ -314,13 +314,11 @@
 
                 const tileTypes = [1, 2, 3]; // 1 is forrest, 2 is desert, 3 is snow
                 const randomTileType = Math.floor(Math.random() * tileTypes.length + 1);
-                console.log(randomTileType)
                 result.sequence = await processGeneratedSequence(randomTileType, result.sequence);
 
                 statusDiv.textContent = `Map generated! ${result.width}x${result.height} tiles`;
 
                 downloadBtn.disabled = false;
-                console.log(result.width, result.height)
                 renderPreview(result.sequence, result.width, result.height);
             } catch (error) {
                 statusDiv.textContent = `Error: ${error.message}`;
